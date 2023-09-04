@@ -7,4 +7,4 @@ tags = {
 
 eks_instance_types = ["t3.medium"]
 
-account_id = "322228980454"
+account_id = ""
