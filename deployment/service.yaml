@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: akiro
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-subnets: subnet-014e6a124eb7b2dba, subnet-02abe96374a752a30
+    service.beta.kubernetes.io/aws-load-balancer-type: nlb
+    service.beta.kubernetes.io/aws-load-balancer-internal: "false"
+spec:
+  type: LoadBalancer
+  selector:
+    app: akiro
+  ports:
+  - port: 80
+    targetPort: http
+    name: http 
+    protocol: TCP
+
+  - port: 9090
+    targetPort: prometheus
+    name: prometheus 
+    protocol: TCP

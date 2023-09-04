@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: akiro
+  labels:
+    app: akiro
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: akiro
+  template:
+    metadata:
+      labels:
+        app: akiro
+    spec:
+      containers:
+      - name: akiro
+        image: 322228980454.dkr.ecr.eu-central-1.amazonaws.com/log-parser:latest
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "50m"
+        ports:
+        - name: http
+          containerPort: 80
+          protocol: TCP
+      
+      - name: prometheus
+        image: 322228980454.dkr.ecr.eu-central-1.amazonaws.com/prometheus:latest
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "50m"
+        ports:
+        - name: prometheus
+          containerPort: 9090
+          protocol: TCP
